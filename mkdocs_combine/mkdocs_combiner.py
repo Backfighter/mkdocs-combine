@@ -81,7 +81,7 @@ class MkDocsCombiner:
                 # extension entries may be dicts (for passing extension parameters)
                 if type(ext) is dict:
                     extname = list(ext.keys())[0].split(u'(')[0]
-                if type(ext) is str or type(ext) is unicode:
+                if type(ext) is str or type(ext) is self.encoding:
                     extname = ext
 
                 if extname == u'markdown_include.include':
@@ -96,7 +96,7 @@ class MkDocsCombiner:
         flattened = []
 
         for page in pages:
-            if type(page) in (str, unicode):
+            if type(page) in (str, self.encoding):
                 flattened.append(
                     {
                         u'file' : page,
@@ -111,7 +111,7 @@ class MkDocsCombiner:
                         u'level': level,
                     })
             if type(page) is dict:
-                if type(list(page.values())[0]) in (str, unicode):
+                if type(list(page.values())[0]) in (str, self.encoding):
                     flattened.append(
                         {
                             u'file' : list(page.values())[0],
@@ -220,7 +220,7 @@ class MkDocsCombiner:
         extensions = ['markdown.extensions.attr_list']
         extension_configs = self.config.get(u'mdx_configs', [])
         for ext in mkdocs_extensions:
-            if type(ext) is str or type(ext) is unicode:
+            if type(ext) is str or type(ext) is self.encoding:
                 extname = str(ext)
                 extensions.append(extname)
             elif type(ext) is dict:
