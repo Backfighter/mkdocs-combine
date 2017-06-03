@@ -1,4 +1,3 @@
-from __future__ import unicode_literals
 class FatalError(Exception):
     """Exception wrapper that contains an exit status in addition to a message"""
     def __init__(self, message, status=1):
