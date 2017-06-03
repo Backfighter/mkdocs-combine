@@ -103,14 +103,14 @@ class MkDocsCombiner(object):
                 flattened.append(
                     {
                         u'file' : page,
-                        u'title': u'%s {: .page-title}' % mkdocs.utils.filename_to_title(page),
+                        u'title': mkdocs.utils.filename_to_title(page),
                         u'level': level,
                     })
             if type(page) is list:
                 flattened.append(
                     {
                         u'file' : page[0],
-                        u'title': u'%s {: .page-title}' % page[1],
+                        u'title': page[1],
                         u'level': level,
                     })
             if type(page) is dict:
@@ -118,7 +118,7 @@ class MkDocsCombiner(object):
                     flattened.append(
                         {
                             u'file' : list(page.values())[0],
-                            u'title': u'%s {: .page-title}' % list(page.keys())[0],
+                            u'title': list(page.keys())[0],
                             u'level': level,
                         })
                 if type(list(page.values())[0]) is list:
@@ -126,7 +126,7 @@ class MkDocsCombiner(object):
                     flattened.append(
                         {
                             u'file' : None,
-                            u'title': u'%s {: .page-title}' % list(page.keys())[0],
+                            u'title': list(page.keys())[0],
                             u'level': level,
                         })
                     # Add children sections
